@@ -41,3 +41,4 @@ vignettes/*.pdf
 # slides specific
 slides/libs/
 *.html
+*.pdf

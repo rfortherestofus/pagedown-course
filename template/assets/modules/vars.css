@@ -1,0 +1,22 @@
+:root {
+  /* interface */
+  --color-background: rgba(0, 0, 0, 0.2);
+  --color-paper: white;
+
+  /* fonts */
+  --font-main: "Inter";
+  --font-title: "Inter";
+
+  /* margin */
+  --pagedjs-margin-left: 0.75in;
+  --pagedjs-margin-right: 0.75in;
+  --pagedjs-margin-bottom: 1.25in;
+  --pagedjs-margin-top: 1in;
+
+  /* fonts */
+  --font-size: 14pt;
+
+  /* colors */
+
+}
+

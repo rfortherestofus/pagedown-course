@@ -1,0 +1,10 @@
+/* Last page */
+
+.last-page {
+	page: last_page;
+}
+
+@page last_page{
+ 
+   }
+
