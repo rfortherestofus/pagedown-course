@@ -1,0 +1,30 @@
+---
+title: "How to organize CSS files"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    df_print: paged
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      rows.print = 5)
+```
+
+## How to organize CSS files
+
+CSS modules
+- Explain how pagedown docs talk about overwriting CSS files + why you do it differently
+
+Vars
+- vars.css
+
+--> Merge with 04 ?

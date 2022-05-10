@@ -1,0 +1,42 @@
+---
+title: "Introduction to `pagedown`"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    df_print: paged
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      rows.print = 5)
+```
+
+
+## The problem
+
+LaTeX
+
+report
+
+---
+
+## The solution
+
+Pagedown (ie Pagedjs + R)
+
+How it works -> create a special web page and print it
+=> web tools
+
++ strength of parametrised reporting
+
+---
+
+## Examples
