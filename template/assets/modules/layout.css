@@ -5,5 +5,18 @@
   /* american paper size */
   size: 8.5in 11in;
 
+  @left-top{
+    content: "";
+    background-color: var(--r4rus-lightblue);
+  }
 
+  @left-middle{
+    content: "";
+    background-color: var(--r4rus-lightblue);
+  }
+
+  @left-bottom{
+    content: "";
+    background-color: var(--r4rus-lightblue);
+  }
 }

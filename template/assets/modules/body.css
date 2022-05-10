@@ -14,11 +14,13 @@ main > h6 {
 }
 
 h1 {
-
+  font-size: 36pt;
+  color: var(--r4rus-lightblue);
 }
 
 h2 {
-
+  font-size: 18pt;
+  color: var(--r4rus-lightblue);
 }
 
 h3 {
@@ -30,5 +32,6 @@ h4 {
 }
 
 p, ul, li {
-
+  font-size: 12pt;
+  color: var(--text-color);
 }

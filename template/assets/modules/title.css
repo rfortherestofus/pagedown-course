@@ -2,11 +2,18 @@
 
 @page:first{
 
-
 }
 
 /* titles */
 h1.title {
   
+}
+
+h2.author{
+
+}
+
+h2.date {
+  page-break-after: always;
 }
 
