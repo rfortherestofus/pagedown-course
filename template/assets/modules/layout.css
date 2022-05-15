@@ -5,18 +5,32 @@
   /* american paper size */
   size: 8.5in 11in;
 
-  @left-top{
+  @left-top {
     content: "";
-    background-color: var(--r4rus-lightblue);
+    background-color: var(--rru-lightblue);
   }
 
-  @left-middle{
+  @left-middle {
     content: "";
-    background-color: var(--r4rus-lightblue);
+    background-color: var(--rru-lightblue);
   }
 
-  @left-bottom{
+  @left-bottom {
     content: "";
-    background-color: var(--r4rus-lightblue);
+    background-color: var(--rru-lightblue);
+  }
+
+  @bottom-left-corner {
+    content: "";
+    background-image: url(../img/rru-logo-blue.svg);
+    background-repeat: no-repeat;
+    background-size: 0.5in;
+    background-position: center;
+  }
+
+  @bottom-right-corner {
+    content: counter(page);
+    color: grey;
+    font-size: 8pt;
   }
 }

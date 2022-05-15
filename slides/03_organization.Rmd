@@ -28,3 +28,8 @@ Vars
 - vars.css
 
 --> Merge with 04 ?
+
+
+## Tips
+page-break-after/before (on chosen elements)
+or newpage

@@ -15,23 +15,31 @@ main > h6 {
 
 h1 {
   font-size: 36pt;
-  color: var(--r4rus-lightblue);
+  color: var(--rru-lightblue);
+  margin-left: 0.2in;
 }
 
 h2 {
   font-size: 18pt;
-  color: var(--r4rus-lightblue);
+  color: var(--rru-lightblue);
+  margin-left: 0.2in;
 }
 
 h3 {
-
+  color: var(--rru-lightblue);
+  margin-left: 0.2in;
 }
 
 h4 {
-
+  margin-left: 0.2in;
 }
 
 p, ul, li {
   font-size: 12pt;
   color: var(--text-color);
+  margin-left: 0.2in;
+}
+
+blockquote {
+  border-left: 2px solid var(--rru-lightblue);
 }

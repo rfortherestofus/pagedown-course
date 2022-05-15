@@ -1,6 +1,5 @@
 ---
 title: "My title"
-author: "David Keyes"
 date: "May 2022"
 output:
   pagedown::html_paged:
@@ -10,15 +9,95 @@ knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE
+)
 ```
 
-## R Markdown
+```{r init}
+library(tidyverse)
+```
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## This is h2 title
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac orci at eros rutrum tempus. Quisque sit amet fringilla ipsum. Vivamus cursus mi id diam consectetur, ut mollis massa eleifend. Vivamus viverra diam neque, sed dapibus neque gravida nec. Etiam ut pellentesque mauris. Nulla eget pulvinar nisi. Maecenas iaculis, purus quis semper pretium, elit enim maximus massa, sed tincidunt risus magna vel magna. Fusce ullamcorper tempor tellus, ullamcorper scelerisque erat gravida eu. Pellentesque facilisis ligula tellus, ac suscipit nunc placerat id. Cras a nulla dignissim, suscipit purus eget, accumsan mi. Ut aliquam nulla sit amet vestibulum convallis. Duis sit amet felis ut turpis pharetra semper sed et nisl. Vestibulum finibus ligula consectetur, elementum magna nec, ornare augue.
 
-## Including Plots
+### This is h3 title
 
-You can also embed plots, for example
+Sed maximus nulla non aliquam euismod. Pellentesque nec hendrerit dui. Phasellus bibendum congue ante fermentum lobortis. Nam turpis ipsum, pharetra eu erat nec, ullamcorper volutpat magna. Ut nec mollis arcu. Ut lobortis diam quis aliquet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse nulla ligula, convallis auctor sodales non, iaculis ac dolor. Sed eu euismod nulla, at auctor ex. Aliquam enim turpis, tincidunt ut viverra non, pellentesque id neque. Mauris tristique nibh id diam lobortis congue. Donec sit amet blandit turpis, sit amet varius mauris. Cras consectetur, felis eget fermentum rhoncus, tellus dui vehicula metus, et pellentesque nunc quam in ligula. Vivamus id libero id ligula vehicula dignissim vel a metus. Pellentesque ultrices, felis feugiat porta euismod, lacus lorem placerat ipsum, quis dictum magna nunc ac diam. Pellentesque scelerisque lacus nec condimentum porttitor.
+
+Vestibulum eu porttitor justo :
+
+- Nulla eget purus non urna viverra sodales. 
+- Donec nec auctor leo, et placerat neque. 
+- Integer tempor imperdiet orci efficitur tempus. 
+- Duis bibendum ligula sit amet metus dictum, quis pulvinar orci cursus.
+- Suspendisse nec placerat sapien.
+- Nulla ornare, ipsum vel suscipit dignissim, nulla nibh iaculis justo, non suscipit tellus quam eget eros. 
+- Sed porttitor orci vel ante scelerisque vestibulum in id velit. 
+- Donec quis dui risus. 
+- Cras fringilla elementum ex sed bibendum.
+
+### This is h3 title
+
+Nunc in ipsum felis. Donec semper posuere nulla, nec ultricies lacus dictum in. Nam ut euismod diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla vitae tortor odio. Fusce dictum arcu a massa malesuada sagittis. Phasellus in vulputate urna. Donec viverra tortor eu sodales consequat. Nam enim turpis, viverra non fermentum sed, blandit quis ex. Pellentesque in libero at urna accumsan egestas nec nec velit. Nulla facilisi.
+
+Vivamus tempor congue magna vitae accumsan. Etiam non sem eu urna aliquam accumsan convallis ac libero. Maecenas vestibulum nunc eros, eu eleifend mi rutrum vel. Cras laoreet velit aliquet tellus fermentum molestie. Fusce sed porttitor elit. Nam pulvinar dui turpis, id rhoncus metus cursus eget. Proin quis elit ut orci placerat commodo.
+
+Donec congue metus et accumsan ornare. Donec non feugiat massa. In tempor tellus vel ligula mollis, sit amet maximus risus mollis. Integer sit amet consectetur ipsum. Pellentesque eleifend lacinia ipsum, at tincidunt tortor suscipit vel. Nullam nisl mi, fringilla nec interdum quis, vehicula sed justo. Donec rhoncus massa sed sapien varius aliquam. Donec feugiat lacus eu quam vestibulum, eu condimentum dolor posuere. Nam vitae mattis nisi, in finibus risus. In volutpat volutpat justo at tempor. Duis laoreet elit neque, non vestibulum magna aliquet a. Suspendisse at finibus massa. Etiam a metus ac turpis commodo viverra accumsan sed neque. Mauris feugiat tempus mi, sit amet congue tortor vulputate nec. Vestibulum lacus orci, luctus nec enim at, scelerisque tempor sapien.
+
+```{r graph}
+ggplot(mtcars, aes(x = mpg, y = disp, color = as.character(cyl))) +
+  geom_point(size = 2) +
+  scale_color_viridis_d(name = "Cyl") +
+  labs(title = "Some title for this nice graph") +
+  theme_minimal()
+```
+
+Vivamus vel sollicitudin sem. Duis at mi vitae nunc blandit ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque commodo, eros a egestas rhoncus, mi nunc interdum odio, vitae aliquet ligula neque quis ex. Sed efficitur lorem non sapien luctus aliquam. Aliquam interdum gravida neque nec ornare. Etiam vehicula pretium diam. Maecenas lacus velit, pharetra vel pellentesque sit amet, pellentesque vitae felis.
+
+## This is h2 title
+
+Maecenas volutpat vulputate sodales. Curabitur a augue est. Cras sollicitudin elit vitae tortor viverra, sed rutrum odio elementum. Vivamus fringilla, massa sit amet dignissim auctor, mi mauris dignissim dui, sed maximus dui felis vel odio. Duis ut nisl a risus aliquet pulvinar. Aenean quam lectus, feugiat id pretium et, tempus eget lectus. Quisque laoreet rutrum dolor, malesuada varius neque sollicitudin sed. Morbi vestibulum leo ut hendrerit iaculis. Morbi dignissim lectus sit amet augue efficitur varius. Duis elementum lobortis lacinia. Sed rutrum rhoncus est.
+
+Suspendisse consectetur eros ac nulla semper suscipit. Nam id lacus at dui vulputate feugiat. Sed velit risus, sodales id malesuada in, ornare at metus. Morbi rhoncus neque in facilisis tempus. Aenean tincidunt volutpat erat, ut tincidunt lorem auctor id. Vivamus eu felis leo. Maecenas egestas elit a mauris finibus sollicitudin. Aenean aliquet libero id mauris posuere, nec aliquam dolor rutrum. Sed nisl risus, sagittis eget elit ac, porta porta est. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec faucibus ipsum non est tristique, sit amet sollicitudin lorem tincidunt. Aliquam elit massa, commodo vel elit et, ullamcorper pellentesque nulla. Integer lectus est, elementum quis purus vel, aliquam condimentum mi.
+
+Mauris sem mi, mollis egestas ante quis, mollis pharetra eros. Phasellus sodales, odio at tincidunt mattis, massa magna dignissim arcu, non ullamcorper erat enim et lectus. Duis nec justo eget nisl pretium viverra. In tristique mi mauris, sit amet aliquet nunc rutrum ut. Duis efficitur erat ac lectus gravida, vel vestibulum nunc ultrices. Suspendisse ultrices leo id quam maximus, et venenatis est finibus. Donec at urna pellentesque, semper nibh eu, interdum dolor.
+
+Nunc quis suscipit magna. Fusce lacinia, velit eget imperdiet varius, est nunc finibus lacus, sed tempus tortor purus vel leo. Nulla facilisi. Ut bibendum aliquet aliquam. Morbi nunc sapien, malesuada et leo id, imperdiet egestas nisl. Phasellus consectetur lacus eget fermentum pharetra. Mauris tincidunt felis vitae imperdiet convallis. Nulla in ultricies nisi, ac sollicitudin sem. In dictum rhoncus egestas. Fusce vitae ex vel est egestas fringilla eget nec tortor. Mauris sit amet mattis ligula. Aenean at sem turpis. Sed imperdiet ex a porttitor tristique. Fusce dictum at metus quis sollicitudin.
+
+Fusce tortor urna, accumsan eget pharetra vitae, molestie eget est. Aliquam mattis finibus lacus aliquam suscipit. Nam condimentum erat ac fringilla elementum. Cras fringilla, tellus rhoncus gravida aliquet, ante odio sagittis lacus, sit amet porttitor ligula felis vel justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse est nisl, semper eget dignissim vel, rutrum sit amet leo. Curabitur et convallis sapien. Quisque ut turpis luctus, aliquam ipsum et, cursus risus. Fusce non est vel lectus pharetra tempor. Curabitur tincidunt elit a nulla tristique elementum. Integer at velit elit. Vestibulum eu sollicitudin mauris. In eu nisl et justo consequat luctus. Fusce condimentum luctus feugiat. Donec commodo justo id mauris iaculis bibendum.
+
+> Proin dictum enim in ligula sollicitudin, vitae facilisis quam euismod. Pellentesque eu mauris sem. Cras dapibus rhoncus metus, in lacinia eros dignissim vitae. Praesent pulvinar turpis at porta molestie. Maecenas non facilisis sapien. Sed ornare aliquet convallis. Nullam cursus purus in convallis consequat. Aliquam erat volutpat. Proin pretium, lacus in viverra finibus, nunc ex fermentum nibh, sed hendrerit nisl diam ut leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse in tellus elit. Suspendisse potenti. Donec tellus nunc, condimentum ac tempor et, efficitur eu nisl. Cras luctus tellus vitae dui ornare venenatis.
+
+## This is h2 title
+
+### This is h3 title
+
+Suspendisse eget nulla a ipsum placerat auctor. Suspendisse convallis velit id accumsan porttitor. In vestibulum massa vitae placerat laoreet. Etiam id libero suscipit, rhoncus nulla at, vulputate enim. Aliquam interdum sed purus eu feugiat. Aenean et dapibus lorem, et lacinia magna. Fusce facilisis ex eget placerat elementum. Pellentesque mollis efficitur malesuada. Aliquam eu imperdiet libero. Proin ante lacus, tincidunt sit amet mollis et, rhoncus id enim. Quisque ex nisl, sagittis quis erat sit amet, sagittis lacinia ligula. Etiam tincidunt, ex in bibendum tempor, orci metus fringilla velit, id euismod ligula odio non orci. Integer pretium quis diam non blandit.
+
+Morbi quis viverra purus. Sed sollicitudin rhoncus rutrum. Etiam a convallis leo, sit amet venenatis orci. Aliquam ut consequat risus, id mattis enim. Cras eu felis non mi aliquet auctor. Pellentesque diam lectus, rutrum ut massa eget, pellentesque mattis massa. Sed aliquam tellus id orci aliquam, id aliquet orci ornare. Maecenas tincidunt sem lacus, vel dictum risus accumsan eu. Donec auctor urna sit amet lectus imperdiet euismod. Donec consequat laoreet lacus sed vehicula. Morbi et tincidunt diam, nec porttitor est. Morbi porta a lacus eget hendrerit. Nulla nec euismod sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque tempus cursus urna, sit amet rutrum mauris mattis vel. Proin nec lacus nulla.
+
+### This is h3 title
+
+Vivamus facilisis, ante sit amet pretium volutpat, nunc lorem lacinia enim, sed viverra libero augue in risus. Vivamus blandit blandit orci sed tincidunt. Nulla vulputate sit amet risus at porta. Etiam volutpat augue justo, a finibus purus feugiat vestibulum. Morbi pretium id erat in bibendum. Mauris metus ex, hendrerit nec volutpat eu, rhoncus sed lectus. Praesent sed convallis sapien, eu dictum turpis. Sed facilisis massa ac mauris hendrerit scelerisque.
+
+Fusce hendrerit orci id nunc placerat, et sollicitudin lacus vehicula. Nulla in augue ut tellus eleifend ultricies in quis purus. Mauris convallis tellus ullamcorper lorem malesuada pellentesque. Quisque eu mauris at leo ornare fermentum. Maecenas egestas massa eget justo suscipit, consequat pulvinar ligula lacinia. Mauris ac mollis lacus. Nunc tincidunt est purus, id rhoncus ligula accumsan fringilla. Aenean ex risus, laoreet a efficitur vitae, semper ac diam. Etiam in diam dignissim, suscipit arcu id, vehicula nulla. Suspendisse ac interdum mauris. Donec in dictum lectus, ac convallis turpis. Praesent sit amet orci ac mauris consequat volutpat. In varius, libero at luctus vestibulum, dui neque rutrum tortor, ut vestibulum eros quam sit amet orci.
+
+## This is h2 title
+
+### This is h3 title
+
+Cras mattis sodales lacus non sodales. Phasellus fringilla tempor nulla a fermentum. Phasellus sodales faucibus pretium. Mauris quis metus tellus. Ut sit amet purus eleifend, consectetur justo a, fringilla dui. Integer iaculis tortor et velit rutrum, quis consequat orci mattis. Curabitur semper commodo turpis, blandit porta orci eleifend ut. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam maximus tortor mauris, a suscipit neque gravida at. Etiam vel mauris neque. Pellentesque at rutrum justo. Pellentesque viverra quam enim, eu commodo tortor posuere vel.
+
+Morbi eget mauris et magna faucibus cursus ac eu lacus. Morbi lobortis tincidunt sollicitudin. Pellentesque eget velit ut dolor varius porta eget quis leo. Aliquam erat volutpat. Nulla vel dui eget risus consectetur placerat. Nam egestas fermentum lectus. Suspendisse commodo erat tellus, et interdum sem euismod eget.
+
+> Phasellus dictum justo purus, in iaculis mi laoreet a. Nullam in dignissim nunc. Nulla porttitor finibus enim, aliquet suscipit magna dictum eu. Quisque ante lectus, venenatis sit amet arcu id, elementum luctus elit. Phasellus vitae ex ac elit imperdiet pharetra non a est. Nunc feugiat risus vel pretium dictum. Nullam felis dolor, varius ac justo viverra, lacinia lacinia ipsum. Donec mattis ex purus, vel molestie turpis posuere ac. Phasellus ut velit at ante aliquet viverra. 
+
+:::last-page
+
+:::
+
