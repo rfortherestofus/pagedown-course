@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE, 
+knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
                       rows.print = 5)
@@ -37,6 +37,41 @@ How it works -> create a special web page and print it
 
 + strength of parametrised reporting
 
+**==> put all the following after the HTML/CSS intro**
+
 ---
 
-## Examples
+## Examples of HTML
+
+You can show the HTML content of your document by opening it in Chrome and use the DevTools (Inspect). It shows you the differents divs.
+
+EXAMPLE GIF : 
+
+```{r}
+knitr::include_graphics(here::here("img/chrome_devtools.gif"))
+```
+
+---
+
+## Examples of HTML
+
+You can also use special div with `:::name-of-the-div` and closing it with `:::`.
+
+EXAMPLE WITH col div
+
+---
+
+## In `pagedown`
+
+You have special divs created by Pagedjs for each page + margins.
+It's better to handle them in the CSS.
+
+---
+
+## Example of CSS
+
+On the other side :
+
+- make example of CSS text change with color/font-size
+
+
