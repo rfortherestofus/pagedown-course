@@ -1,0 +1,306 @@
+---
+title: "`pagedown` course"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    df_print: paged
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      rows.print = 5)
+```
+
+```{r}
+library(here)
+```
+
+class: inverse, center, middle
+
+background-image:url("img/page.jpg")
+
+# Introduction to pagedown
+
+---
+
+## The problem
+
+We often want to get PDF from R :
+
+--
+
++ it's portable
+
+--
+
++ it's widely used in the business world
+
+--
+
++ it's allow parametrised reporting
+
+---
+
+## The problem
+
+
+... And we sometimes use LaTeX for that task... :
+
++ outputs are awful (outside from the scientific world)
+
+```{r, out.height='250px', fig.align = 'left'}
+knitr::include_graphics("https://i.stack.imgur.com/Nug7W.png", dpi = 300)
+```
+
++ they are hard to customize
+
+---
+
+## The solution : `pagedown`
+
+Principles :
+
++ it relies on PagedJs, a Javascript library
+
++ this one helps to "translate" some CSS style into a page
+
++ and you can print this page (using Chrome or another browser, in R : `pagedown::chrome_print`) to get a PDF
+
+---
+
+## Why `pagedown` ?
+
+**It's a web-based tool**
+
+So you can use tools like HTML, CSS or Javascript to style it :
+
++ way easier than LaTeX to learn
+
++ you can call web designer to help
+
++ it's also doable to reuse or share some parts with your website or other templates (`xaringan` or `blogdown`)
+
+---
+
+## Some examples
+
+```{r, out.height='300px', fig.align='default', fig.show = "hold"}
+knitr::include_graphics(
+  c(
+    "https://raw.githubusercontent.com/tvroylandt/sgdf_pagedown/master/img/page1.PNG",
+    "https://p218.p3.n0.cdn.getcloudapp.com/items/4gumRNLp/Image%202020-03-22%20at%202.24.38%20PM.png",
+    "https://mk0rfortheresto0o08q.kinstacdn.com/wp-content/uploads/2021/01/grid.gif"
+  ),
+  dpi = 300
+)
+```
+
+---
+
+## Some examples
+
+```{r, fig.align='center', out.height='200px', out.width='400px'}
+knitr::include_graphics(here("img/psc_housing_1.png"), dpi = 300)
+knitr::include_graphics(here("img/psc_housing_2.png"), dpi = 300)
+```
+
+
+
+---
+class: inverse, center, middle
+
+background-image:url("img/anatomy.jpg")
+
+# Anatomy of a document
+
+---
+
+pagedown format  --> in the yaml --> call pagedjs --> look for @page elements --> papper+ scissor --> HTML
+
+
+---
+class: inverse, center, middle
+
+background-image:url("img/markup.jpg")
+
+# HTML : a markup tool
+
+---
+
+(from MDN -> adapt it )
+
+HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation (CSS) or functionality/behavior (JavaScript).
+
+"Hypertext" refers to links that connect web pages to one another, either within a single website or between websites. Links are a fundamental aspect of the Web. By uploading content to the Internet and linking it to pages created by other people, you become an active participant in the World Wide Web.
+
+HTML uses "markup" to annotate text, images, and other content for display in a Web browser. HTML markup includes special "elements" such as <head>, <title>, <body>, <header>, <footer>, <article>, <section>, <p>, <div>, <span>, <img>, <aside>, <audio>, <canvas>, <datalist>, <details>, <embed>, <nav>, <output>, <progress>, <video>, <ul>, <ol>, <li> and many others.
+
+An HTML element is set off from other text in a document by "tags", which consist of the element name surrounded by "<" and ">". The name of an element inside a tag is case insensitive. That is, it can be written in uppercase, lowercase, or a mixture. For example, the <title> tag can be written as <Title>, <TITLE>, or in any other way. However, the convention and recommended practice is to write tags in lowercase.
+
+---
+
+Content from https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics
+
+---
+
+## Link to RMarkdown
+
+Pandoc -> WebPage
+---
+
+## Examples of HTML
+
+You can show the HTML content of your document by opening it in Chrome and use the DevTools (Inspect). It shows you the differents divs.
+
+EXAMPLE GIF : 
+
+```{r}
+knitr::include_graphics(here("img/chrome_devtools.gif"))
+```
+
+---
+
+## Examples of HTML
+
+You can also use special div with `:::name-of-the-div` and closing it with `:::`.
+
+EXAMPLE WITH col div
+
+---
+
+## In `pagedown`
+
+You have special divs created by Pagedjs for each page + margins.
+It's better to handle them in the CSS.
+---
+
+class: inverse, center, middle
+
+background-image:url("img/drawing.jpg")
+
+# CSS : draw the world
+
+---
+
+(from MDN -> adapt it )
+
+Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.
+
+
+---
+
+## Link to RMarkdown
+
+CSS argument in the function
+
+
+---
+## Together
+
+Make a schema
+
+---
+
+## List of common elements + attributes
+
+p, h1 -> h5
+ul, li
+blockquote
+
+
+
+---
+
+## Example of CSS
+
+On the other side :
+
+- make example of CSS text change with color/font-size
+
+---
+
+## Resources
+
+- Mozilla
+- W3C
+
+
+---
+
+class: inverse, center, middle
+
+background-image:url("img/beast.jpg")
+
+# Inside of the beast
+
+---
+
+## How to organize CSS files
+
+CSS modules
+- Explain how pagedown docs talk about overwriting CSS files + why you do it differently
+
+Vars
+- vars.css
+
+--> Merge with 04 ?
+
+
+## Tips
+page-break-after/before (on chosen elements)
+or newpage
+
+
+---
+## Fonts + text
+
+Fonts
+- fonts.css
+
+Text
+- body.css
+
+---
+## Graphical elements
+
+Pictures (graphs)
+- pictures.css
+
+Tables
+- tables.css
+
+---
+## Layout
+
+Margins + page breaks
+- layout.css
+
+CSS pseudo classes (e.g. page:first)
+- layout.css
+
+Page numbers
+- layout.css
+
+Table of contents
+- layout.css
+
+Footnotes/endnotes
+- layout.css
+
+---
+## Front + back cover
+
+Front cover
+- title.css
+
+Back cover
+- last.css
+
