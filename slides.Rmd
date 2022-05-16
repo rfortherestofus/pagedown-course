@@ -19,10 +19,6 @@ knitr::opts_chunk$set(echo = FALSE,
                       rows.print = 5)
 ```
 
-```{r}
-library(here)
-```
-
 class: inverse, center, middle
 
 background-image:url("img/page.jpg")
@@ -108,8 +104,8 @@ knitr::include_graphics(
 ## Some examples
 
 ```{r, fig.align='center', out.height='200px', out.width='400px'}
-knitr::include_graphics(here("img/psc_housing_1.png"), dpi = 300)
-knitr::include_graphics(here("img/psc_housing_2.png"), dpi = 300)
+knitr::include_graphics("img/psc_housing_1.png", dpi = 300)
+knitr::include_graphics("img/psc_housing_2.png", dpi = 300)
 ```
 
 
@@ -162,8 +158,8 @@ You can show the HTML content of your document by opening it in Chrome and use t
 
 EXAMPLE GIF : 
 
-```{r}
-knitr::include_graphics(here("img/chrome_devtools.gif"))
+```{r, out.height='400px'}
+knitr::include_graphics("img/chrome_devtools.gif")
 ```
 
 ---
@@ -225,13 +221,6 @@ On the other side :
 
 - make example of CSS text change with color/font-size
 
----
-
-## Resources
-
-- Mozilla
-- W3C
-
 
 ---
 
@@ -251,13 +240,8 @@ CSS modules
 Vars
 - vars.css
 
---> Merge with 04 ?
-
-
-## Tips
-page-break-after/before (on chosen elements)
-or newpage
-
+- get CSS vars from R
+- margin size
 
 ---
 ## Fonts + text
@@ -268,14 +252,18 @@ Fonts
 Text
 - body.css
 
+Style every elements you need --> see CSS
+
 ---
 ## Graphical elements
 
 Pictures (graphs)
 - pictures.css
+- img : 100%
 
 Tables
 - tables.css
+- not always mandatory, depends if you use `flextable`, `gt` or another. You can also style it in R
 
 ---
 ## Layout
@@ -283,17 +271,29 @@ Tables
 Margins + page breaks
 - layout.css
 
-CSS pseudo classes (e.g. page:first)
+whole page or margins
+
+```{r, out.height='400px'}
+knitr::include_graphics("https://pagedjs.org/images/margin-boxes.png")
+```
+
+CSS pseudo classes (e.g. page:first) + page blank
 - layout.css
+- named page to create your own
 
 Page numbers
 - layout.css
+- content : counter(page) + reset on a special div if needed
 
 Table of contents
 - layout.css
+- see the default toc content in the pagedown CSS
 
 Footnotes/endnotes
 - layout.css
+
+Columns layout
+- use two columns nested if needed  + change size (see before as an example)
 
 ---
 ## Front + back cover
@@ -301,6 +301,27 @@ Footnotes/endnotes
 Front cover
 - title.css
 
++ two ways to handle newpage (newpage or page-break-before on a special div 
++ must nullify changes on the layout : use content none or background none
++ use position absolute if needed
+
 Back cover
 - last.css
 
+ + Special div for last page
+
+
+---
+
+class: inverse, center, middle
+
+background-image:url("img/mine.jpg")
+
+# Resources
+
+---
+
+- https://pagedjs.org/documentation/ + gitlab
+- pagedown github
+- Mozilla
+- W3C
