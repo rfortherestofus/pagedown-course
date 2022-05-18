@@ -468,50 +468,233 @@ background-image:url("img/beast.jpg")
 
 ---
 
----
+## An opiniated opinion
 
-## In `pagedown`
+At R for the Rest of Us, we developed a framework based on :
 
-You have special divs created by Pagedjs for each page + margins.
-It's better to handle them in the CSS.
+--
 
----
++ the use of lightweight CSS files as modules. Each file assume a part of the global design
 
-## How to organize CSS files
+--
 
-CSS modules
-- Explain how pagedown docs talk about overwriting CSS files + why you do it differently
++ CSS variables to propagate values througout the style sheets and avoid repetitions
 
-Vars
-- vars.css
+--
 
-- get CSS vars from R
-- margin size
++ methods to pass values of R objects to the CSS
 
 ---
-## Fonts + text
 
-Fonts
-- fonts.css
+## Modules
 
-Text
-- body.css
+--
 
-Style every elements you need --> see CSS
+We only put one file into the `css` argument of the `html_paged()` function : `assets.css` :
+
+```{css, eval = FALSE, echo = TRUE}
+/* modules */
+@import "modules/vars.css";
+@import "modules/fonts.css";
+@import "modules/body.css";
+@import "modules/pictures.css";
+@import "modules/title.css";
+@import "modules/last.css";
+@import 'modules/layout.css';
+
+/* interface */
+@import "interface/interface.css";
+```
+
+--
+
++ it calls the others files with `@import`
+
++ they are divided between modules and interface. The latest only helps to develop the template.
 
 ---
-## Graphical elements
 
-Pictures (graphs)
-- pictures.css
-- img : 100%
+## CSS variables
 
-Tables
+In `vars.css`, we define CSS variables :
+
+--
+
++ inside of a `:root{}` statement
++ you can define variable using `--variable-name: value;`
+
+--
+
+```{css, eval = FALSE, echo = TRUE}
+:root {
+  /* fonts */
+  --font-main: "Inter";
+  --font-title: "Inter";
+
+  /* colors */
+  --text-color: #404e6b;
+  --rru-lightblue: #6caadd;
+}
+```
+
+--
+
++ after that, they could be used in the CSS like :
+
+```{css, eval = FALSE, echo = TRUE}
+h3 {
+  color: var(--rru-lightblue);
+  font-family: var(--font-title);
+}
+```
+
+---
+
+## CSS variables
+
++ they help to be consistent across the document
+
++ they are also useful when you need to adjust one value in the whole style
+
++ you can use them mostly for position (margins), size, colors
+
++ they are also a way to get a value from R
+
+---
+
+## Get a value from R to the style
+
+Sometimes, you want to change things in the style depending on an R object :
+
++ change the name in the footer to match with the parameter of the report (like a town name as an example)
++ change an image (like an inset map) for the same reason
+
+One way to do it is to generate a CSS variable from R and put it inside the CSS like in the following render function :
+
+```{r, eval = FALSE, echo= TRUE}
+print_rru <- function(name) {
+  # write CSS to temp -> this doesn't work in the Rmd with knit
+  temp_path <- tempfile(fileext = ".css")
+  writeLines(paste0(":root {--name: '", name, "';}"), con = temp_path)
+  
+  # to html
+  rmarkdown::render(
+    "report.Rmd",
+    output_format = pagedown::html_paged(
+      css = c("assets/main.css", temp_path),
+      number_sections = FALSE
+    ),
+    params = list(name = name)
+  )
+}
+```
+
+---
+
+## Get a value from R to the style
+
+Then you can call the CSS variable in the CSS like :
+
+```{css, eval = FALSE, echo= TRUE}
+content: var(--name)"'s Report";
+```
+
+--
+
+Other options are available :
+
+--
+
++ Javascript inside the Pandoc template, see [`pagedreport`](https://github.com/rfortherestofus/pagedreport/blob/main/inst/resources/html/template_paged.html#L183) for an example 
+
+--
+
++ `front_cover` and `back_cover` arguments to change the front/back image ->  [Documentation](https://pagedown.rbind.io/#covers)
+
+---
+
+## Tip : make a two-column layout
+
+TO DO
+
+---
+
+class: inverse, center, middle
+
+background-image:url("img/library.jpg")
+
+# Files review
+
+---
+## Body
+
+In `body.css`, we enable all "normal elements" :
+
++ text with `p`
++ lists with `ul` and `li` (or `ol` for numbered lists)
++ headers with `h1` -> `h6`
++ blockquotes
++ links with `a`
+
+This part could be share with other Rmd templates of your compagny since it's not `pagedown` specific.
+
+---
+## Fonts
+
+`fonts.css` helps to import fonts because:
+
++ either the font you call is installed on your system 
++ either it isn't (and you should assume it isn't if the document is shared) and you must import it (mostly from Google Fonts or elsewhere on the web) as in the examples below :
+
+```{css, eval = FALSE, echo= TRUE}
+@import 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap';
+```
+
+```{css, eval = FALSE, echo= TRUE}
+@import url("https://rsms.me/inter/inter.css");
+
+html {
+    font-family: "Inter", sans-serif;
+  }
+```
+
+---
+## Pictures
+
+Pictures (in `pictures.css`) are important since every R graph output is an image.
+
+In the CSS, we set a limit to the size of the images, so it doesn't get out of the page :
+
+```{css, eval = FALSE, echo= TRUE}
+img {
+  max-width: 100%;
+}
+```
+
+You can reduce the parameter if you want smaller images/graphs.
+
+--
+
+If you want to handle graph size, you can also use in code chunks :
+
++ `fig.height` and `fig.width`, in inches, mostly for graphs
++ `out.height` and `out.width`, in pixels, mostly for images
+
+---
+## Tables
+
 - tables.css
 - not always mandatory, depends if you use `flextable`, `gt` or another. You can also style it in R
 
 ---
 ## Layout
+
+You have special divs created by Pagedjs for each page + margins.
+It's better to handle them in the CSS.
+
+
+- margin size
+
 
 Margins + page breaks
 - layout.css
@@ -541,7 +724,15 @@ Columns layout
 - use two columns nested if needed  + change size (see before as an example)
 
 ---
-## Front + back cover
+## Layout
+
+
+---
+## Layout
+
+
+---
+## Title
 
 Front cover
 - title.css
@@ -550,13 +741,12 @@ Front cover
 + must nullify changes on the layout : use content none or background none
 + use position absolute if needed
 
-Back cover
+---
+## Last
+
 - last.css
 
  + Special div for last page
-
-
-+ back and front cover in `pagedown` to change image dynamically
 
 ---
 
@@ -568,7 +758,10 @@ background-image:url("img/mine.jpg")
 
 ---
 
+## Some useful resources
+
 - https://pagedjs.org/documentation/ + gitlab
 - pagedown github
+- Pandoc
 - Mozilla
 - W3C
