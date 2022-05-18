@@ -19,6 +19,11 @@ knitr::opts_chunk$set(echo = FALSE,
                       rows.print = 5)
 ```
 
+```{r}
+library(tidyverse)
+```
+
+
 class: inverse, center, middle
 
 background-image:url("img/page.jpg")
@@ -205,11 +210,9 @@ background-image:url("img/markup.jpg")
 
 HTML means HyperText Markup Language : 
 
-
 --
 
 + You can see it as a building block of every Web Page, like a Lego brick.
-
 
 --
 
@@ -219,6 +222,10 @@ HTML means HyperText Markup Language :
   + `<h1>`, `<h2>` and so on for titles
   + `<ul>` and `<li>` for lists
   + etc.
+  
+--
+
++ They are often nested
   
 --
 
@@ -232,35 +239,68 @@ You can show the HTML content of your document by opening it in Chrome and use t
 
 ```{r, out.height='400px'}
 knitr::include_graphics("img/chrome_devtools.gif")
-
 ```
 
 ---
 
 ## How does it look like ?
 
-PUT HTML CODE AND IMAGE SIDE TO SIDE TO SHOW P / H1 / ETC
+```{r, out.height='500px'}
+knitr::include_graphics("img/html_elements.gif")
+```
 
 ---
 
 ## HTML as an R user
 
-Pandoc -> WebPage
++ You don't write plain HTML, you write Markdown
+
+--
+
++ Behind the scenes, `rmarkdown` calls Pandoc, which translate it into HTML--
+
+--
+
++ You can define special divs using `:::name-of-the-div` to open it and `:::` to close it
+
+--
+
++ See [the guide](https://www.markdownguide.org/basic-syntax/) for the translation between Markdown and HTML
 
 ---
 
-## Examples of HTML
+## Common HTML elements
 
-You can also use special div with `:::name-of-the-div` and closing it with `:::`.
+```{r tbl_html}
+tibble(
+  elem = c(
+    "p",
+    "h1",
+    "h2",
+    "h3",
+    "ul",
+    "li",
+    "blockquote",
+    "img",
+    "toc",
+    "body"
+  ),
+  meaning = c(
+    "Paragraph",
+    "Header 1",
+    "Header 2",
+    "Header 3",
+    "List",
+    "List element",
+    "Blockquote",
+    "Image",
+    "Table of contents",
+    "Body (everything)"
+  )
+) %>% 
+  knitr::kable("html", col.names = c("Element", "Meaning"))
+```
 
-EXAMPLE WITH col div
-
----
-
-## In `pagedown`
-
-You have special divs created by Pagedjs for each page + margins.
-It's better to handle them in the CSS.
 ---
 
 class: inverse, center, middle
@@ -337,39 +377,86 @@ knitr::include_graphics("img/pagedown_help_css.png", dpi = 300)
 
 It will replace the default style provided with the package.
 
----
+--
 
-## Common HTML elements
-
-TABLE
-
-p, h1 -> h5
-ul, li
-blockquote
+The special divs made in RMarkdown could be access by `.name-of-the-div{}`
 
 ---
 
 ## Common CSS properties
 
-TABLE
-
-background
-font weight
-font family
-font size
-color
-
-margin + padding
-Content
-
+```{r tbl_css1}
+tibble(
+  prop = c(
+    "font-size",
+    "font-family",
+    "font-weight",
+    "font-style",
+    "color",
+    "background-color",
+    "background-image",
+    "background-repeat",
+    "line-height"
+  ),
+  meaning = c(
+    "Font size (mostly in pt)",
+    "Font family",
+    "Font weight (normal, bold, or a weight from 100 to 900)",
+    "Font style, like italic",
+    "Color of the element",
+    "Color of the background",
+    "Url of the background image",
+    "Always to no-repeat",
+    "Line height"
+  ),
+  example = c(
+    "font-size: 36pt;",
+    "font-family: Inter;",
+    "font-weight: bold;",
+    "font-style: italic;",
+    "color: #6caadd;",
+    "background-color: #6caadd;",
+    "background-image: url(img/my_img.jpg);",
+    "background-repeat: no-repeat;",
+    "line-height: 1;"
+  )
+) %>%
+  knitr::kable("html", col.names = c("Element", "Meaning", "Example"))
+```
 
 ---
 
-## Example of CSS
+## Common CSS properties
 
-On the other side :
-
-- make example of CSS text change with color/font-size
+```{r tbl_css2}
+tibble(
+  prop = c(
+    "margin-block-start",
+    "margin-block-end",
+    "content",
+    "margin",
+    "padding",
+    "border"
+  ),
+  meaning = c(
+    "Margin before the block",
+    "Margin after the block",
+    "Text content if needed",
+    "Margin",
+    "Padding (margins but less with less constraints)",
+    "Border (if you want solid border)"
+  ),
+  example = c(
+    "margin-block-start: 2px;",
+    "margin-block-end: 2px;",
+    "content: 'my content';",
+    "margin : 1in;",
+    "padding; 0.5in;",
+    "border:2px solid #6caadd;"
+  )
+) %>%
+  knitr::kable("html", col.names = c("Element", "Meaning", "Example"))
+```
 
 ---
 
@@ -378,6 +465,15 @@ class: inverse, center, middle
 background-image:url("img/beast.jpg")
 
 # Inside of the beast
+
+---
+
+---
+
+## In `pagedown`
+
+You have special divs created by Pagedjs for each page + margins.
+It's better to handle them in the CSS.
 
 ---
 
