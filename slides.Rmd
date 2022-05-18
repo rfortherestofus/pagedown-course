@@ -474,7 +474,7 @@ At R for the Rest of Us, we developed a framework based on :
 
 --
 
-+ the use of lightweight CSS files as modules. Each file assume a part of the global design
++ the use of lightweight CSS files as modules instead of the standard files provided with the package. Each file assume a part of the global design
 
 --
 
@@ -615,7 +615,49 @@ Other options are available :
 
 ## Tip : make a two-column layout
 
-TO DO
+Sometimes, you need to put elements side by side. It's often the case when you create a parametrised report where you want to put text and graphs together.
+
+--
+
+In this case, you have to create two things, one in the RMarkdown :
+
+```{md, eval = FALSE, echo= TRUE}
+:::wrap-columns
+:::columns-50
+Some content here
+:::
+::: columns-50
+Some content here
+:::
+:::
+```
+
+--
+
+And one in the CSS :
+
+```{css, eval = FALSE, echo= TRUE}
+.wrap-columns {
+  display: flex;
+  padding: 0 0pt;
+}
+
+.columns-50 {flex: 50%;}
+```
+
+---
+
+## Tip : make a two-column layout
+
+This create two levels of blocks where your content will be put :
+
+```{r, fig.align='left', out.height='300px', out.width='600px'}
+knitr::include_graphics("img/two_columns.png", dpi = 300)
+```
+
+--
+
+You can also adjust the size of columns inside the CSS or create more than two if needed.
 
 ---
 
@@ -683,8 +725,18 @@ If you want to handle graph size, you can also use in code chunks :
 ---
 ## Tables
 
-- tables.css
-- not always mandatory, depends if you use `flextable`, `gt` or another. You can also style it in R
+`tables.css` isn't mandatory.
+
+It depends on the package you use to output tables :
+
+--
+
++ if you use `knitr::kable()`, you can style tables elements using `tr` and `td` tags
++ you could also use `kableExtra` with it and provide a style from R
+
+--
+
++ if you use `flextable` or `gt`, you also have the two options
 
 ---
 ## Layout
@@ -705,7 +757,7 @@ whole page or margins
 knitr::include_graphics("https://pagedjs.org/images/margin-boxes.png")
 ```
 
-CSS pseudo classes (e.g. page:first) + page blank
+CSS pseudo classes (e.g. page:first + blank + nth) + page blank
 - layout.css
 - named page to create your own
 
@@ -734,19 +786,96 @@ Columns layout
 ---
 ## Title
 
-Front cover
-- title.css
+The front cover page lives in `title.css` :
 
-+ two ways to handle newpage (newpage or page-break-before on a special div 
-+ must nullify changes on the layout : use content none or background none
-+ use position absolute if needed
+--
+
++ it contains a `@page:first{}` pseudo-classes which create the first page
++ plus the style related to the title, date or author
+
+--
+
+To define the end of the page, you can either :
+
++ use the `\newpage` statement in the Rmd -> this is the easiest solution
+
++ create a void div on page 2, which has a `page-break-before :always` property on the HTML side
+
+---
+## Title
+
+Some tips related to the first page :
+
++ If you have multiple images on the first side, it could easier to merge them into one using Paint or GIMP. This helps you to avoid complex positioning issues
+
+--
+
++ You are in a page. This means, you can position titles or other elements in an absolute way by specifying margins like this :
+
+```{css, eval = FALSE, echo= TRUE}
+h1.title {
+  position: absolute;
+  margin-top: 8.2in;
+  margin-right: 2in;
+  line-height: 0.6in;
+  color: white;
+  font-size: 38pt;
+  font-family: var(--font-title);
+  color: var(--colibri-purple);
+}
+```
+
+---
+## Title
+
++ You must overturn every changes made in `layout.css` or `body.css` regarding the page margins/background and the `h1`/ `h2` elements. By default, the front cover inherits everything.
+
+```{css, eval = FALSE, echo= TRUE}
+@page:first {
+
+  background: url(../img/RfortheRestofUs_Templates_Wallpapers-4.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @left-top {background: none;}
+
+  @left-middle {background: none;}
+
+  @left-bottom {background: none;}
+
+  @bottom-left-corner {background: none;}
+
+  @bottom-right-corner{content: none;}
+}
+```
 
 ---
 ## Last
 
-- last.css
+The back cover in `last.css` works like the front cover but you don't have a `@page:last` pseudo-classes :
 
- + Special div for last page
++ you have to hack it by creating a named page in the Rmd 
+
+```{md, eval = FALSE, echo= TRUE}
+:::last-page
+
+:::
+```
+
++ and in the CSS :
+
+```{css, eval = FALSE, echo= TRUE}
+.last-page {
+	page: last_page;
+}
+
+@page last_page{
+   background-image: url(../img/RforRestofUs_Hex Pattern.svg);
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+```
 
 ---
 
@@ -760,8 +889,10 @@ background-image:url("img/mine.jpg")
 
 ## Some useful resources
 
-- https://pagedjs.org/documentation/ + gitlab
-- pagedown github
-- Pandoc
-- Mozilla
-- W3C
++ To learn more about `pagedown`, you can have a look at the [documentation](https://pagedown.rbind.io/) or the [issues](https://github.com/rstudio/pagedown/issues) on Github
+
++ To have a deeper knowledge on the foundations, look at the PagedJS [documentation](https://pagedjs.org/documentation/) or their [Gitlab](https://gitlab.coko.foundation/pagedjs/pagedjs)
+
++ Markdown [guide](https://www.markdownguide.org/basic-syntax/), once again
+
++ To learn HTML and CSS, you can either have a look at Mozilla tutorial ([HTML](https://developer.mozilla.org/en/docs/Web/HTML) + [CSS](https://developer.mozilla.org/en/docs/Web/CSS)) or the W3C tutorial ([HTML](https://www.w3schools.com/html/) + [CSS](https://www.w3schools.com/css/))
