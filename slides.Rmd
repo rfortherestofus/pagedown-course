@@ -41,20 +41,24 @@ We often want to get PDF from R :
 
 --
 
-+ it's allow parametrised reporting
++ it allows parametrised reporting
 
 ---
 
 ## The problem
 
 
-... And we sometimes use LaTeX for that task... :
+... And we sometimes use LaTeX for that task, but :
+
+--
 
 + outputs are awful (outside from the scientific world)
 
 ```{r, out.height='250px', fig.align = 'left'}
 knitr::include_graphics("https://i.stack.imgur.com/Nug7W.png", dpi = 300)
 ```
+
+--
 
 + they are hard to customize
 
@@ -64,9 +68,15 @@ knitr::include_graphics("https://i.stack.imgur.com/Nug7W.png", dpi = 300)
 
 Principles :
 
+--
+
 + it relies on PagedJs, a Javascript library
 
+--
+
 + this one helps to "translate" some CSS style into a page
+
+--
 
 + and you can print this page (using Chrome or another browser, in R : `pagedown::chrome_print`) to get a PDF
 
@@ -76,13 +86,21 @@ Principles :
 
 **It's a web-based tool**
 
+--
+
 So you can use tools like HTML, CSS or Javascript to style it :
+
+--
 
 + way easier than LaTeX to learn
 
-+ you can call web designer to help
+--
 
-+ it's also doable to reuse or share some parts with your website or other templates (`xaringan` or `blogdown`)
++ easier to reuse or share some parts with your website or other templates (like `xaringan` or `blogdown`)
+
+--
+
++ outputs are nicer than with LaTeX
 
 ---
 
@@ -103,12 +121,10 @@ knitr::include_graphics(
 
 ## Some examples
 
-```{r, fig.align='center', out.height='200px', out.width='400px'}
+```{r, fig.align='left', out.height='200px', out.width='400px'}
 knitr::include_graphics("img/psc_housing_1.png", dpi = 300)
 knitr::include_graphics("img/psc_housing_2.png", dpi = 300)
 ```
-
-
 
 ---
 class: inverse, center, middle
@@ -119,7 +135,63 @@ background-image:url("img/anatomy.jpg")
 
 ---
 
-pagedown format  --> in the yaml --> call pagedjs --> look for @page elements --> papper+ scissor --> HTML
+## How `pagedown` works
+
+--
+
+**`pagedown`** is a R package which provide custom outputs formats :
+
+--
+
++ you call it through `pagedown::html_paged` in the YAML header
+
+--
+
++ and use the `css` argument to provide a custom style sheet
+
+--
+
+```{yaml, echo = TRUE, eval = FALSE}
+---
+title: "My title"
+date: "May 2022"
+output:
+  pagedown::html_paged:
+    css: "assets/main.css"
+    number_sections: FALSE
+knit: pagedown::chrome_print
+---
+```
+
+--
+
++ **tip** : you can also wrap it inside a custom package and a custom function
+
+---
+
+## Behind the scene
+
+--
+
+1. `pagedown` + `rmarkdown` translate the document into a web page build with **HTML** (using Pandoc)
+
+--
+
+2. `pagedown` calls PagedJs :
+
+  + which cuts the document into pages (like scissors)
+  + put everything at the right place (like glue on papper) by looking at the `@page` statement in the **CSS**
+
+--
+
+3. We use `pagedown::chrome_print` to print the document to PDF using Chrome printing device
+
+
+--
+
+```{r, fig.align='left', out.height='300px', out.width='900px'}
+knitr::include_graphics("img/pagedown_process.png", dpi = 300)
+```
 
 
 ---
@@ -131,7 +203,9 @@ background-image:url("img/markup.jpg")
 
 ---
 
-(from MDN -> adapt it )
+## HTML : a definition
+
+
 
 HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation (CSS) or functionality/behavior (JavaScript).
 
@@ -185,6 +259,8 @@ background-image:url("img/drawing.jpg")
 # CSS : draw the world
 
 ---
+
+## CSS : a definition
 
 (from MDN -> adapt it )
 
