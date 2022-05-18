@@ -186,13 +186,11 @@ knit: pagedown::chrome_print
 
 3. We use `pagedown::chrome_print` to print the document to PDF using Chrome printing device
 
-
 --
 
 ```{r, fig.align='left', out.height='300px', out.width='900px'}
 knitr::include_graphics("img/pagedown_process.png", dpi = 300)
 ```
-
 
 ---
 class: inverse, center, middle
@@ -205,36 +203,49 @@ background-image:url("img/markup.jpg")
 
 ## HTML : a definition
 
+HTML means HyperText Markup Language : 
 
 
-HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation (CSS) or functionality/behavior (JavaScript).
+--
 
-"Hypertext" refers to links that connect web pages to one another, either within a single website or between websites. Links are a fundamental aspect of the Web. By uploading content to the Internet and linking it to pages created by other people, you become an active participant in the World Wide Web.
++ You can see it as a building block of every Web Page, like a Lego brick.
 
-HTML uses "markup" to annotate text, images, and other content for display in a Web browser. HTML markup includes special "elements" such as <head>, <title>, <body>, <header>, <footer>, <article>, <section>, <p>, <div>, <span>, <img>, <aside>, <audio>, <canvas>, <datalist>, <details>, <embed>, <nav>, <output>, <progress>, <video>, <ul>, <ol>, <li> and many others.
 
-An HTML element is set off from other text in a document by "tags", which consist of the element name surrounded by "<" and ">". The name of an element inside a tag is case insensitive. That is, it can be written in uppercase, lowercase, or a mixture. For example, the <title> tag can be written as <Title>, <TITLE>, or in any other way. However, the convention and recommended practice is to write tags in lowercase.
+--
+
++ A lot of bricks are available :
+
+  + `<p>` for paragraphs
+  + `<h1>`, `<h2>` and so on for titles
+  + `<ul>` and `<li>` for lists
+  + etc.
+  
+--
+
++ The user can define it's own bricks called "div" using `<div>` and `</div>` (to begin/close the block)
 
 ---
 
-Content from https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics
-
----
-
-## Link to RMarkdown
-
-Pandoc -> WebPage
----
-
-## Examples of HTML
+## How to get the HTML skeleton of a web page
 
 You can show the HTML content of your document by opening it in Chrome and use the DevTools (Inspect). It shows you the differents divs.
 
-EXAMPLE GIF : 
-
 ```{r, out.height='400px'}
 knitr::include_graphics("img/chrome_devtools.gif")
+
 ```
+
+---
+
+## How does it look like ?
+
+PUT HTML CODE AND IMAGE SIDE TO SIDE TO SHOW P / H1 / ETC
+
+---
+
+## HTML as an R user
+
+Pandoc -> WebPage
 
 ---
 
@@ -262,31 +273,94 @@ background-image:url("img/drawing.jpg")
 
 ## CSS : a definition
 
-(from MDN -> adapt it )
+CSS means Cascading Style Sheets :
 
-Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.
+--
 
++ it's used to describe how elements should look like
+
+--
+
++ if HTML is the Lego brick, CSS is the description of it :
+
+  + size
+  + color
+  + shape
+  
+--
+
+```{r, fig.align='left', out.height='200px', out.width='600px'}
+knitr::include_graphics("img/lego_html_css.png", dpi = 300)
+```
+
+---
+## CSS properties
+
+A CSS file is a list of properties for each HTML element :
+
+```{css, eval = FALSE, echo = TRUE}
+h1 {
+  font-size: 36pt;
+  color: #6caadd;
+  margin-left: 0.2in;
+}
+
+h2 {
+  font-size: 18pt;
+  color: #6caadd;
+  margin-left: 0.2in;
+}
+
+p, ul, li {
+  font-size: 12pt;
+  color: #404e6b;
+  margin-left: 0.2in;
+}
+
+blockquote {
+  border-left: 2px solid blue;
+}
+```
+
+---
+## In R
+
+--
+
+The main way to use CSS is to provide a link to a CSS file inside the `css` argument of your custom format :
+
+```{r, fig.align='left', out.height='200px', out.width='600px'}
+knitr::include_graphics("img/pagedown_help_css.png", dpi = 300)
+```
+
+--
+
+It will replace the default style provided with the package.
 
 ---
 
-## Link to RMarkdown
+## Common HTML elements
 
-CSS argument in the function
-
-
----
-## Together
-
-Make a schema
-
----
-
-## List of common elements + attributes
+TABLE
 
 p, h1 -> h5
 ul, li
 blockquote
 
+---
+
+## Common CSS properties
+
+TABLE
+
+background
+font weight
+font family
+font size
+color
+
+margin + padding
+Content
 
 
 ---
@@ -296,7 +370,6 @@ blockquote
 On the other side :
 
 - make example of CSS text change with color/font-size
-
 
 ---
 
@@ -386,6 +459,8 @@ Back cover
 
  + Special div for last page
 
+
++ back and front cover in `pagedown` to change image dynamically
 
 ---
 
