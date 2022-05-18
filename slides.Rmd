@@ -677,6 +677,7 @@ In `body.css`, we enable all "normal elements" :
 + headers with `h1` -> `h6`
 + blockquotes
 + links with `a`
++ footnotes with `.footnotes`
 
 This part could be share with other Rmd templates of your compagny since it's not `pagedown` specific.
 
@@ -741,47 +742,182 @@ It depends on the package you use to output tables :
 ---
 ## Layout
 
-You have special divs created by Pagedjs for each page + margins.
-It's better to handle them in the CSS.
+The core of `pagedown` customization power relies on the `layout.css` file, which handle :
 
++ everything related to pages, margins and content in the margins, including the page numbering
 
-- margin size
++ the table of contents
 
++ the footnote style
 
-Margins + page breaks
-- layout.css
++ other special blocks
 
-whole page or margins
+---
+### Page
+
+To handle pages, `pagedown` has a special CSS element called `@page` :
+
+--
+
++ you can (and must) set it's size at the beginning 
+
+--
+
++ like other CSS elements, you can apply properties like background
+
+--
+
+```{css, eval = FALSE, echo= TRUE}
+@page {
+  /* american paper size */
+  size: 8.5in 11in;
+  background-color: lightgrey;
+}
+```
+
+--
+
+Some special pages exists (they are named pseudo-classes) like :
+
+--
+
++ `@page:first` : the first page
++ `@page:blank` : every blank page
++ `@page:nth(x)` : page number x
+
+--
+
+They inherit the properties of `@page`, so be careful when you use them
+
+---
+### Page
+
+You can also create you own special pages (called "named page") with :
+
++ a div in the Rmd :
+
+```{md, eval = FALSE, echo= TRUE}
+:::my-named-page
+
+:::
+```
+
++ and in the CSS, a special statement :
+
+```{css, eval = FALSE, echo= TRUE}
+.my-named-page {
+	page: named_one;
+}
+
+@page named_one{
+   /*put properties here */
+}
+```
+
+---
+### Margins
+
+Every page has a core and margins.
+
+--
+
+And each part of the margin (called "margin boxes") has a name :
+
+--
 
 ```{r, out.height='400px'}
 knitr::include_graphics("https://pagedjs.org/images/margin-boxes.png")
 ```
 
-CSS pseudo classes (e.g. page:first + blank + nth) + page blank
-- layout.css
-- named page to create your own
+---
+### Margins
 
-Page numbers
-- layout.css
-- content : counter(page) + reset on a special div if needed
+This system is useful to style every margin box separately :
 
-Table of contents
-- layout.css
-- see the default toc content in the pagedown CSS
-
-Footnotes/endnotes
-- layout.css
-
-Columns layout
-- use two columns nested if needed  + change size (see before as an example)
+```{css, eval = FALSE, echo= TRUE}
+@page {
+  @left-top {
+    content: "";
+    background-color: var(--rru-lightblue);
+  }
+}
+```
 
 ---
-## Layout
+### Margins
 
+Margin size is controlled by CSS variable in `vars.css`. They are automatically handled by Pagedjs after.
+
+```{css, eval = FALSE, echo= TRUE}
+:root {
+  /* margin */
+  --pagedjs-margin-left: 0.75in;
+  --pagedjs-margin-right: 0.75in;
+  --pagedjs-margin-bottom: 1.25in;
+  --pagedjs-margin-top: 1in;
+}
+```
+
+--
+
+**Tip** : you should set the dimension of your page and margins first before to setup everything else.
+
+--
+
+**Tip** : if you want an image (like a logo) in a margin box, put it as a background image and set `content:"";`
 
 ---
-## Layout
+### Page number
 
+You can write page number as a content inside of a CSS element.
+
+Combined with a margin box position, it's powerful.
+
+```{css, eval = FALSE, echo= TRUE}
+@page {
+  @bottom-right-corner {
+    content: counter(page);
+    color: grey;
+    font-size: 8pt;
+  }
+}
+```
+
+---
+### Table of contents
+
+Table of content can be set and managed through an instruction given by the default CSS of `pagedown` :
+
+```{css, eval = FALSE, echo= TRUE}
+.toc ul, .lot ul, .lof ul {
+  list-style: none;
+  padding-left: 0;
+  overflow-x: hidden;
+}
+.toc li li {padding-left: 1em;}
+.toc a, .lot a, .lof a {
+  text-decoration: none;
+  background: white;
+  padding-right: .33em;
+}
+.toc a::after, .lot a::after, .lof a::after {
+  /* content: leader(dotted) target-counter(attr(href), page); */
+  content: target-counter(attr(href), page);
+  float: right;
+  background: white;
+}
+.toc a.front-matter-ref::after, .lot a.front-matter-ref::after, .lof a.front-matter-ref::after {
+  /* content: leader(dotted) target-counter(attr(href), page, lower-roman); */
+  content: target-counter(attr(href), page, lower-roman);
+}
+.toc .leaders::before, .lot .leaders::before, .lof .leaders::before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ";
+}
+}
+```
 
 ---
 ## Title
