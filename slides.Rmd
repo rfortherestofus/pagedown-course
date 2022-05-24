@@ -185,7 +185,7 @@ knit: pagedown::chrome_print #<<
 2. `pagedown` calls Paged.js:
 
   + which cuts the document into pages (like scissors)
-  + put everything at the right place (like glue on papper) by looking at the `@page` statement in the **CSS**
+  + put everything at the right place (like glue on paper) by looking at the `@page` statement in the **CSS**
 
 --
 
@@ -544,6 +544,8 @@ knit: pagedown::chrome_print
 
 ## CSS variables
 
+--
+
 In `vars.css`, we define CSS variables:
 
 --
@@ -659,11 +661,13 @@ Other options are available:
 
 class: inverse, center, middle
 
-# Fonts and Text
+# Design
 
 ---
 
-## Body
+## Fonts and Text
+
+--
 
 In `body.css`, we deal with all "normal" HTML elements:
 
@@ -697,7 +701,7 @@ This part can be shared with other Rmd templates since it's not specific to `pag
 
 ---
 
-## Fonts
+## Fonts and Text
 
 `fonts.css` imports fonts from Google Fonts (or somewhere similar) to make sure everyone has access to them (so we don't have to rely on people having them installed locally)
 
@@ -717,11 +721,6 @@ html {
   }
 ```
 
----
-
-class: inverse, center, middle
-
-# Visual Elements
 
 ---
 
@@ -754,6 +753,8 @@ If you want to handle graph size, you can also use in code chunks:
 
 ## Tables
 
+--
+
 `tables.css` isn't mandatory and whether you use it depends on the package you use to output tables:
 
 --
@@ -770,7 +771,13 @@ If you want to handle graph size, you can also use in code chunks:
 
 ---
 
+class: center, middle, inverse
+
 # Layout
+
+---
+
+## Layout
 
 The core of `pagedown` customization power relies on the `layout.css` file, which handles:
 
@@ -799,7 +806,7 @@ To handle pages, `pagedown` has a special CSS element called `@page`:
 
 --
 
-+ you can (and must) set itss size at the beginning 
++ you can (and must) set its size at the beginning 
 
 --
 
@@ -979,10 +986,15 @@ knitr::include_graphics("img/two_columns.png", dpi = 300)
 
 You can also adjust the size of columns inside the CSS or create more than two if needed.
 
+---
+
+class: center, middle, inverse
+
+## Table of Contents and Page Numbers
 
 ---
 
-### Table of contents
+### Table of Contents
 
 Table of contents can be set and managed through an instruction given by the default CSS of `pagedown`:
 
