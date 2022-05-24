@@ -34,6 +34,8 @@ background-image:url("img/page.jpg")
 
 ## The problem
 
+--
+
 We often want to create PDF reports from RMarkdown
 
 --
@@ -89,7 +91,7 @@ How `pagedown` works:
 
 --
 
-+ Paged.js "translate" CSS styles into a page format in an HTML file
++ Paged.js "translates" CSS styles into a page format in an HTML file
 
 --
 
@@ -1172,7 +1174,7 @@ background-image:url("img/mine.jpg")
 
 + To learn more about `pagedown`, you can have a look at the [documentation](https://pagedown.rbind.io/) or the [issues](https://github.com/rstudio/pagedown/issues) on Github
 
-+ To have a deeper knowledge on the foundations, look at the Paged.js [documentation](https://Paged.js.org/documentation/) or their [Gitlab](https://gitlab.coko.foundation/Paged.js/Paged.js)
++ To have a deeper knowledge on the foundations, look at the Paged.js [documentation](https://Pagedjs.org/documentation/) or their [Gitlab](https://gitlab.coko.foundation/Pagedjs/Pagedjs)
 
 + Markdown [guide](https://www.markdownguide.org/basic-syntax/), once again
 
