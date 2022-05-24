@@ -99,7 +99,7 @@ How `pagedown` works:
 
 ---
 
-## Why `pagedown` ?
+## Why `pagedown`?
 
 --
 
@@ -140,12 +140,7 @@ class: center, middle
 knitr::include_graphics("img/psc_housing_1.png", dpi = 300)
 ```
 
----
-class: inverse, center, middle
 
-background-image:url("img/anatomy.jpg")
-
-# Anatomy of a document
 
 ---
 
@@ -205,15 +200,15 @@ knitr::include_graphics("img/pagedown_process.png", dpi = 300)
 ---
 class: inverse, center, middle
 
-background-image:url("img/markup.jpg")
-
-# HTML
+# HTML and CSS
 
 ---
 
 ## HTML
 
-HTML means HyperText Markup Language: 
+--
+
+HTML means **H**yper**T**ext **M**arkup **L**anguage: 
 
 --
 
@@ -257,6 +252,8 @@ knitr::include_graphics("img/html_elements.gif")
 ---
 
 ## Common HTML elements
+
+--
 
 ```{r tbl_html}
 tibble(
@@ -310,13 +307,7 @@ tibble(
 
 
 
----
 
-class: inverse, center, middle
-
-background-image:url("img/drawing.jpg")
-
-# CSS
 
 ---
 
@@ -398,6 +389,8 @@ html_paged(
 
 ## Common CSS properties
 
+--
+
 ```{r tbl_css1}
 tibble(
   prop = c(
@@ -440,6 +433,8 @@ tibble(
 ---
 
 ## Common CSS properties
+
+--
 
 ```{r tbl_css2}
 tibble(
