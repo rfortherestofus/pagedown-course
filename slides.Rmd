@@ -1049,6 +1049,40 @@ Combined with a margin box position, it's powerful.
 
 ---
 
+### Footnotes and endnotes
+
+You can create footnotes in your document with `^[my footnote]` :
+
+--
+
++ By default, footnotes are endnotes
+
+--
+
++ But you can render them as footnotes using `paged-footnotes: true` in the YAML header.
+
+```{yaml, echo = TRUE, eval = FALSE}
+---
+title: "My title"
+date: "May 2022"
+output:
+  pagedown::html_paged:
+    css: "assets/main.css"
+paged-footnotes: true #<<
+knit: pagedown::chrome_print
+---
+```
+
+--
+
++ If you need to change the footnote style, you can access it through `.footnote` and create your own CSS for it.
+
+--
+
++ Remind yourself that the footnote will go above the bottom-margin so it reduce the available space. You may need to adjust the size of this margin to fit your needs.
+
+---
+
 class: center, middle, inverse
 
 # Front and Back Covers
