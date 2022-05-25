@@ -1049,17 +1049,19 @@ Combined with a margin box position, it's powerful.
 
 ---
 
-### Footnotes and endnotes
-
-You can create footnotes in your document with `^[my footnote]` :
+### Footnotes and Endnotes
 
 --
 
-+ By default, footnotes are endnotes
+You can create footnotes in your document with `^[my footnote]`:
 
 --
 
-+ But you can render them as footnotes using `paged-footnotes: true` in the YAML header.
+By default, footnotes are endnotes
+
+--
+
+But you can render them as footnotes using `paged-footnotes: true` in the YAML header.
 
 ```{yaml, echo = TRUE, eval = FALSE}
 ---
@@ -1073,13 +1075,16 @@ knit: pagedown::chrome_print
 ---
 ```
 
+
+---
+
+### Footnotes and Endnotes
+
+If you need to change the footnote style, you can access it through `.footnote` and create your own CSS for it.
+
 --
 
-+ If you need to change the footnote style, you can access it through `.footnote` and create your own CSS for it.
-
---
-
-+ Remind yourself that the footnote will go above the bottom-margin so it reduce the available space. You may need to adjust the size of this margin to fit your needs.
+Footnotes will go above the bottom-margin, reducing available space. You may need to adjust the size of this margin to fit your needs.
 
 ---
 
