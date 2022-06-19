@@ -996,7 +996,26 @@ class: center, middle, inverse
 
 ### Table of Contents
 
-Table of contents can be set and managed through an instruction given by the default CSS of `pagedown`:
+You can setup the table of contents using `toc: TRUE` in the YAML 
+
+```{yaml, echo = TRUE, eval = FALSE}
+---
+title: "My title"
+output:
+  pagedown::html_paged:
+    toc: TRUE
+---
+```
+
+If you are using a custom function to output the report, don't forgot to add the `toc = TRUE` argument !
+
+---
+
+### Table of Contents
+
+Table of contents can be set and managed through an instruction given by the default CSS of `pagedown`.
+
+The following command the aspect of the list
 
 ```{css, eval = FALSE, echo= TRUE}
 .toc ul, .lot ul, .lof ul {
@@ -1010,6 +1029,23 @@ Table of contents can be set and managed through an instruction given by the def
   background: white;
   padding-right: .33em;
 }
+
+.toc .leaders::before, .lot .leaders::before, .lof .leaders::before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ";
+}
+
+```
+
+---
+
+### Table of Contents
+
+And the other ones the aspect of the links
+
+```{css, eval = FALSE, echo= TRUE}
 .toc a::after, .lot a::after, .lof a::after {
   /* content: leader(dotted) target-counter(attr(href), page); */
   content: target-counter(attr(href), page);
@@ -1019,13 +1055,6 @@ Table of contents can be set and managed through an instruction given by the def
 .toc a.front-matter-ref::after, .lot a.front-matter-ref::after, .lof a.front-matter-ref::after {
   /* content: leader(dotted) target-counter(attr(href), page, lower-roman); */
   content: target-counter(attr(href), page, lower-roman);
-}
-.toc .leaders::before, .lot .leaders::before, .lof .leaders::before {
-  float: left;
-  width: 0;
-  white-space: nowrap;
-  content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ";
-}
 }
 ```
 
